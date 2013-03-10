@@ -2,7 +2,7 @@
 
 class MY_Controller extends CI_Controller
 {
-	protected $u = null;
+	var $u = null;
 
 	public function __construct()
 	{
@@ -73,7 +73,8 @@ class MY_Controller extends CI_Controller
 
 	private function set_header()
 	{
-		$this->pageinfo['header'] = $this->load->view('header', array(), true);
+		$args['user'] = $this->u;
+		$this->pageinfo['header'] = $this->load->view('header', $args, true);
 	}
 
 	protected function err_404($value='')

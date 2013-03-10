@@ -1,9 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-function arr_get($arr, $k)
+function arr_get($arr, $k, $default = false)
 {
-	return $arr[$k];
+	if(!is_array($arr)) return $default;
+
+	if(array_key_exists($k, $arr))
+		return $arr[$k];
+	else
+		return $default;
 }
 
 function db_result($table, $columns, $where)
@@ -71,6 +76,64 @@ function gen_pager($total)
 	$ci->pagination->initialize($config);
 	$pager = $ci->pagination->create_links();
 	return preg_replace(array('/\?&amp;/', '/&amp;page=1?"/', '/\?page=1?"/'), array('?', '"', '"'), $pager);
+}
+
+function cmt_seainfo($n)
+{
+	$str = '这位小盆友在';
+	if(1 == $n)
+		$str .= '神农顶上仰望星空，思考着下一顿吃什么';
+	elseif($n < 34)
+		$str .= '海拔' . (3400 - $n*100) . '米的地方被野人赶来赶去';
+	elseif(34 == $n)
+		$str .= '海面上悠哉地漂来漂去';
+	else
+		$str .= '海下' . ($n*100 - 3400) . '米的地方被鲨鱼追来追去';
+
+	$str .= '...';
+	return $str;
+}
+
+function pro_like($type, $id)
+{
+	$ci = &get_instance();
+	$re = array();
+	$inc = true;
+	$uid = $ci->u['id'];
+
+	foreach (array('like', 'mark') as $action)
+	{
+		$act = $ci->input->get($action);
+		$table = $type . '_' . $action;
+		$db_act = db_result($table, 'uid', array('uid'=>$uid, 'pid'=>$id));
+		$db_act = (false === $db_act) ? 0 : 1;
+		$add = 0;
+
+		if(in_array($act, array('y', 'n')))
+		{
+			if('y' == $act && 0 == $db_act)
+			{
+				$ci->db->insert($table, array('pid'=>$id, 'uid'=>$uid, 'ctime'=>time()));
+				inc($type . '_post', 'n_' . $action, array('id'=>$id));
+				$add = 1;
+				$db_act = 1;
+			}
+			elseif('n' == $act && 1 == $db_act)
+			{
+				$ci->db->where(array('pid'=>$id, 'uid'=>$uid))->delete($table);
+				inc($type . '_post', 'n_' . $action, array('id'=>$id), -1);
+				$add = -1;
+				$db_act = 0;
+			}
+			$inc = false;
+		}
+		$re[$action] = $db_act;
+		$re[$action . '_add'] = $add;
+	}
+
+	if($inc) inc($type . '_post', 'n_click', array('id'=>$id));
+	
+	return $re;
 }
 
 function Sset($k, $v)

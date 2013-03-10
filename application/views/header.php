@@ -10,7 +10,7 @@
 		</ul>
 
 		<ul class="user">
-			<li><a href="/my">我叫小井</a></li>
+			<li><a href="/index.php/user/<?=$user['id']?>"><?=$user['name']?></a></li>
 			<li><a href="/msg">私信(0)</a></li>
 			<li><a href="/logout">退出</a></li>
 		</ul>

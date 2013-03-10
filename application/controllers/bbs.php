@@ -48,8 +48,16 @@ class Bbs extends MY_Controller
 		$args = $this->bbs->get_post($id);
 		if(false === $args) $this->err_404();
 
-		inc('bbs_post', 'n_click', array('id'=>$id));
 		$args['sidebar'] = $this->sidebar();
+
+		$args['has_like'] = intval(db_result('bbs_like', 'uid', array('pid'=>$id, 'uid'=>$this->u['id'])));
+		$args['has_mark'] = intval(db_result('bbs_mark', 'uid', array('pid'=>$id, 'uid'=>$this->u['id'])));
+
+		// $re = pro_like('bbs', $id);
+		// $args['has_like'] = $re['like'];
+		// $args['n_like'] += $re['like_add'];
+		// $args['has_mark'] = $re['mark'];
+		// $args['n_mark'] += $re['mark_add'];
 
 		$bc = array(
 			'bbs' => '/index.php',
