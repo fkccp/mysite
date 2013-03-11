@@ -1,1 +1,12 @@
 RewriteEngine On
+RewriteBase /
+
+RewriteCond $1 !^(index\.php|robots\.txt)$
+RewriteCond $1 !^static$
+RewriteCond $1 !^upload$
+
+RewriteRule ^avatar/(\d+).gif /avatar.php?uid=$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php/$1 [L,QSA]

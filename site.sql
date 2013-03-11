@@ -31,7 +31,10 @@ create table bbs_post(
 	n_cmt int default 0,
 	n_like int default 0,
 	is_show tinyint default 1,
-	status tinyint default 1 comment '1-未审核，0-已审核'
+	status tinyint default 1 comment '1-未审核，0-已审核',
+	last_cmt_ctime int unsigned default 0,
+	last_cmt_userid int unsigned default 0,
+	last_cmt_username varchar(20) default ''
 );
 
 drop table if exists bbs_append;
@@ -75,8 +78,20 @@ create table bbs_cmt(
 	id int unsigned primary key auto_increment,
 	pid int unsigned default 0,
 	uid int unsigned default 0,
+	content text,
 	n_like int unsigned default 0,
-	ctime int unsigned default 0
+	ctime int unsigned default 0,
+	is_show tinyint default 1,
+	status tinyint default 1
+);
+
+drop table if exists bbs_cmt_like;
+create table bbs_cmt_like
+(
+	uid int unsigned default 0,
+	cid int unsigned default 0,
+	ctime int unsigned default 0,
+	unique uni(uid, pid)
 );
 
 /* site */

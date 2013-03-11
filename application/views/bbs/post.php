@@ -7,15 +7,11 @@
 	</div>
 	<div><?=$content?></div>
 	<div>
-		<div>
-			<a href="javascript:;">赞/取消赞</a>
-			<a href="javascript:;">收藏/取消收藏</a>
-		</div>
-		<div>
+			<a href="javascript:;" class="action" data-type="bbs|like|<?=$id?>"><?if($has_like):?>取消<?endif?>赞</a>
+			<a href="javascript:;" class="action" data-type="bbs|mark|<?=$id?>"><?if($has_mark):?>取消<?endif?>收藏</a>
 			<span><?=$n_click?>点击</span>
-			<span><?=$n_like?>赞</span>
-			<span><?=$n_mark?>收藏</span>
-		</div>
+			<span class="n_like"><?=$n_like+1?>赞</span>
+			<span class="n_mark"><?=$n_mark+1?>收藏</span>
 	</div>
 
 	<div><?=$cmts?></div>
