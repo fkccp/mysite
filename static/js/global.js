@@ -16,9 +16,26 @@ $(function(){
 				data[items[k]] = val
 			}
 			$('.warn').html('发布中....')
-			$.post('/index.php/bbs/ajax_add', data, function(r){
+			$.post('/bbs/ajax_add', data, function(r){
 				if(!isNaN(r))
-					location = "/index.php/bbs/post/" + r
+					location = "/bbs/post/" + r
+			})
+		})
+	}
+
+	if($('#bbs-append').length)
+	{
+		$('#bbs-append').click(function(){
+			var o = $('#bbs-content')
+			if('' == o.html())
+			{
+				$('.warn').html('请把数据填写完整')
+				return
+			}
+			$('.warn').html('发布中....')
+			$.post('/bbs/ajax_append', {cnt: o.html()}, function(r){
+				if(!isNaN(r))
+					location = "/bbs/post/" + r
 			})
 		})
 	}
@@ -36,7 +53,7 @@ $(function(){
 				return false
 			}
 			warn.html('发布中....')
-			$.post('/index.php/utils/bbs_cmt_add', {cnt:cnt}, function(r){
+			$.post('/utils/bbs_cmt_add', {cnt:cnt}, function(r){
 				location.reload()
 			})
 		})
@@ -63,7 +80,7 @@ $(function(){
 			if(n_origin < 0) n_origin = 0
 			n_obj.html(n_origin + type_map[data.type])
 
-			$.post('/index.php/utils/action', data)
+			$.post('/utils/action', data)
 		})
 	}
 })

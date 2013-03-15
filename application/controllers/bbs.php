@@ -53,12 +53,6 @@ class Bbs extends MY_Controller
 		$args['has_like'] = intval(db_result('bbs_like', 'uid', array('pid'=>$id, 'uid'=>$this->u['id'])));
 		$args['has_mark'] = intval(db_result('bbs_mark', 'uid', array('pid'=>$id, 'uid'=>$this->u['id'])));
 
-		// $re = pro_like('bbs', $id);
-		// $args['has_like'] = $re['like'];
-		// $args['n_like'] += $re['like_add'];
-		// $args['has_mark'] = $re['mark'];
-		// $args['n_mark'] += $re['mark_add'];
-
 		$bc = array(
 			'bbs' => '/index.php',
 			$args['nodename'] => '/index.php/bbs/node/' . $args['nodename'],
@@ -70,7 +64,52 @@ class Bbs extends MY_Controller
 		$this->load->model('cmtmodel', 'cmt');
 		$args['cmts'] = $this->cmt->get_list('bbs', $id);
 
+		$args['is_my_post'] = $args['uid'] == $this->u['id'];
+
 		$this->v('bbs/post', $args);
+	}
+
+	public function append($id)
+	{
+		$this->load->model('bbsmodel');
+		$info = db_result('bbs_post', 'id,title,nid,uid', array('id'=>$id, 'is_show'=>1));
+		if(false === $info) $this->err_404();
+		if($info['uid'] != $this->u['id'])
+		{
+			header('Location: /bbs/post/' . $id);
+			$this->over();
+		}
+		$nodename = db_result('bbs_node', 'name', array('id'=>$info['nid']));
+
+		$bc = array(
+			'bbs' => '/bbs',
+			$nodename => '/bbs/node/' . $nodename,
+			$info['title'] => '/bbs/post/' . $id,
+			'添加附言' => ''
+		);
+		$this->set_bc($bc);
+		
+		$this->v('bbs/append');
+	}
+
+	public function ajax_append()
+	{
+		$cnt = $this->input->post('cnt');
+		$ref = arr_get($_SERVER, 'HTTP_REFERER');
+		if('' == $cnt || false === $ref || 0 == preg_match('#bbs/append/(\d+)#', $ref, $m))
+		{
+			echo 'e';
+			return false;
+		}
+
+		$data = array(
+			'pid' => $m[1],
+			'content' => $cnt,
+			'ctime' => time()
+		);
+		$this->db->insert('bbs_append', $data);
+
+		echo $m[1];
 	}
 
 	public function add($node='')

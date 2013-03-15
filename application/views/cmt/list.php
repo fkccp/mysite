@@ -4,7 +4,7 @@
 	<div>
 		<a name="cmt_<?=$item['id']?>"></a>
 		<p>
-			<a href="/index.php/user/<?=$item['uid']?>"><?=$item['name']?></a>
+			<a href="/user/<?=$item['uid']?>"><?=$item['name']?></a>
 			发表于<?=beautify_time($item['ctime'])?>前
 			<span><?=$k+1?></span>
 		</p>

@@ -8,6 +8,13 @@ class Bbsmodel extends CI_Model
 		if(false === $data) return false;
 		$data['username'] = db_result('user', 'name', array('id'=>$data['uid']));
 		$data['nodename'] = db_result('bbs_node', 'name', array('id'=>$data['nid']));
+
+		$data['appends'] = $this->db
+							->select('content, ctime')
+							->where('pid', $id)
+							->order_by('id', 'asc')
+							->get('bbs_append')
+							->result_array();
 		return $data;
 	}
 
