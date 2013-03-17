@@ -1,9 +1,9 @@
 /*global*/
 
-* {margin:0;padding:0;font-size: 12px;}
+* {margin:0;padding:0;font-size: 14px;}
 body {background-color: #fff;}
 li {list-style: none;}
-.clear {clear: both;}
+.clear {clear: both;width:0;height:0}
 .warn {color: red}
 
 #topbar {width: 100%; padding:7px 0; box-shadow:0px 1px 10px #9b9;height:16px}
@@ -28,3 +28,20 @@ li {list-style: none;}
 
 /* cmt */
 div.cmt_content {border: 1px solid #333; padding-bottom: 30px}
+
+/* setting */
+
+.setting table {width: 99%}
+.setting table tr {border-bottom: 1px dashed #999}
+.setting table th {text-align: right}
+.setting table th, .setting table td {padding:15px 0}
+.setting table input.wid {width:200px}
+
+#choose_city {display: none; position: absolute;top: 160px;left: 485px;background-color: #ffa;}
+#choose_city th {border-right:1px solid #ddd;color:#ddd;vertical-align: top;padding-top: 25px;}
+#choose_city div#citybox { width:590px;padding: 5px;border:1px solid #bbb}
+#choose_city div#citybox ul {float: left; clear: both; border-bottom: 1px dashed #999;margin-bottom: 10px}
+#choose_city .warn {font-size: 12px; float: left;clear: both;}
+#choose_city li {float: left;padding:2px; margin-right: 5px}
+#choose_city li a {font-size: 12px}
+#choose_city li.on a {color: red}

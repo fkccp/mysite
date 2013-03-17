@@ -6,15 +6,23 @@ create table user(
 	nickname varchar(20) default '',
 	anoy_name varchar(20) default '',
 	created int unsigned default 0,
+	last_login_time int unsigned default 0,
+	last_login_ip int unsigned default 0,
 	status tinyint default 1
 );
 
 create table userinfo(
 	uid int unsigned default 0,
-	prov char(2) default '',
-	city char(2) default '',
-	town char(2) default '',
-	birth int unsigned default 0
+	sex tinyint unsigned default 0,
+	sex_pub tinyint unsigned default 1,
+	birth varchar(10) default '',
+	birth_pub tinyint unsigned default 0,
+	from_id varchar(10) default '',
+	live_id varchar(10) default '',
+	married tinyint unsigned default 1,
+	married_pub tinyint unsigned default 1,
+	job varchar(255) default '',
+	sign varchar(255) default ''
 );
 
 /* bbs */
@@ -95,9 +103,18 @@ create table bbs_cmt_like
 );
 
 /* site */
-drop table site_setting;
+drop table if exists site_setting;
 create table site_setting(
 	k varchar(20) default '',
 	v varchar(255) default '',
 	unique k(k) 
+);
+
+drop table if exists site_city;
+create table site_city(
+	sid tinyint unsigned default 0,
+	cid tinyint unsigned default 0,
+	rid tinyint unsigned default 0,
+	tid tinyint unsigned default 0,
+	name varchar(50) default ''
 );

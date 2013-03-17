@@ -1,0 +1,131 @@
+﻿<Location>
+  <State Name="北京" Code="11">
+    <City Name="神农架" Code="A21" >
+      <Region Name="松柏镇" Code="3" >
+        <Town Name="狮象坪" />
+        <Town Name="中心街" />
+        <Town Name="百花坪" />
+        <Town Name="清泉" />
+        <Town Name="龙沟" />
+        <Town Name="糖坊" />
+        <Town Name="松柏" />
+        <Town Name="盘水" />
+        <Town Name="八卦庙" />
+        <Town Name="红花朵" />
+        <Town Name="麻湾" />
+      </Region>
+      <Region Name="阳日镇" Code="3" >
+        <Town Name="阳日湾" />
+        <Town Name="薄磨街" />
+        <Town Name="阳日" />
+        <Town Name="钱家湾" />
+        <Town Name="桃园" />
+        <Town Name="朝阳" />
+        <Town Name="太阳" />
+        <Town Name="双建" />
+        <Town Name="万福" />
+        <Town Name="大坪" />
+        <Town Name="南垭" />
+        <Town Name="古水" />
+        <Town Name="白莲" />
+        <Town Name="长青" />
+        <Town Name="龙溪" />
+        <Town Name="武山" />
+      </Region>
+      <Region Name="木鱼镇" Code="3" >
+        <Town Name="木鱼坪" />
+        <Town Name="红花坪" />
+        <Town Name="木鱼" />
+        <Town Name="九冲" />
+        <Town Name="三堆河" />
+        <Town Name="茅胡" />
+        <Town Name="青峰" />
+        <Town Name="小当阳" />
+      </Region>
+      <Region Name="红坪镇" Code="3" >
+        <Town Name="红坪" />
+        <Town Name="红河" />
+        <Town Name="温水" />
+        <Town Name="官封" />
+        <Town Name="高坪" />
+        <Town Name="塔坪" />
+        <Town Name="红花" />
+        <Town Name="红举" />
+        <Town Name="板仓" />
+        <Town Name="阴峪河" />
+      </Region>
+      <Region Name="新华镇" Code="3" >
+        <Town Name="石屋头" />
+        <Town Name="锚儿观" />
+        <Town Name="大岭" />
+        <Town Name="桃坪" />
+        <Town Name="龙潭" />
+        <Town Name="马鹿场" />
+        <Town Name="龙口" />
+        <Town Name="豹儿洞" />
+        <Town Name="高白岩" />
+      </Region>
+      <Region Name="宋洛乡" Code="3" >
+        <Town Name="宋洛村" />
+        <Town Name="盘龙村" />
+        <Town Name="梨子坪" />
+        <Town Name="西坡" />
+        <Town Name="后山坪" />
+        <Town Name="莲花观" />
+        <Town Name="长坊" />
+        <Town Name="中岭" />
+      </Region>
+      <Region Name="九湖乡" Code="3" >
+        <Town Name="大九糊" />
+        <Town Name="黄柏阡" />
+        <Town Name="东溪" />
+        <Town Name="响水" />
+        <Town Name="青书坪" />
+        <Town Name="三合" />
+        <Town Name="二坪" />
+        <Town Name="长岭" />
+        <Town Name="坪阡" />
+      </Region>
+      <Region Name="下谷坪土家族乡" Code="3" >
+        <Town Name="金甲坪" />
+        <Town Name="兴隆寺" />
+        <Town Name="太和山" />
+        <Town Name="板桥河" />
+      </Region>
+    </City>
+    <City Name="东城" Code="1" />
+    <City Name="西城" Code="2" />
+    <City Name="朝阳" Code="5" />
+    <City Name="丰台" Code="6" />
+    <City Name="石景山" Code="7" />
+    <City Name="海淀" Code="8" />
+    <City Name="门头沟" Code="9" />
+    <City Name="房山" Code="11" />
+    <City Name="通州" Code="12" />
+    <City Name="顺义" Code="13" />
+    <City Name="昌平" Code="21" />
+    <City Name="大兴" Code="24" />
+    <City Name="平谷" Code="26" />
+    <City Name="怀柔" Code="27" />
+    <City Name="密云" Code="28" />
+    <City Name="延庆" Code="29" />
+  </State>
+  <State Name="天津" Code="12">
+    <City Name="和平" Code="1" />
+    <City Name="河东" Code="2" />
+    <City Name="河西" Code="3" />
+    <City Name="南开" Code="4" />
+    <City Name="河北" Code="5" />
+    <City Name="红桥" Code="6" />
+    <City Name="滨海新区" Code="26" />
+    <City Name="东丽" Code="10" />
+    <City Name="西青" Code="11" />
+    <City Name="津南" Code="12" />
+    <City Name="北辰" Code="13" />
+    <City Name="宁河" Code="21" />
+    <City Name="武清" Code="22" />
+    <City Name="静海" Code="23" />
+    <City Name="宝坻" Code="24" />
+    <City Name="蓟县" Code="25" />
+  </State>
+</Location>

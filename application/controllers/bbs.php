@@ -17,13 +17,13 @@ class Bbs extends MY_Controller
 		$this->set_title('首页');
 
 		$this->load->model('bbsmodel', 'bbs');
-		$bc = array('bbs'=>'/index.php/bbs');
+		$bc = array('bbs'=>'/bbs');
 		if($nodename)
 		{
 			$nodename = urldecode($nodename);
 			$nid = db_result('bbs_node', 'id', array('name'=>$nodename));
 			if(false === $nid) $this->err_404();
-			$bc[$nodename] = '/index.php/bbs/node/' . $nodename;
+			$bc[$nodename] = '/bbs/node/' . $nodename;
 		}
 		else
 			$nid = 0;
@@ -48,14 +48,14 @@ class Bbs extends MY_Controller
 		$args = $this->bbs->get_post($id);
 		if(false === $args) $this->err_404();
 
-		$args['sidebar'] = $this->sidebar();
+		$args['sidebar'] = $this->sidebar($args['uid']);
 
 		$args['has_like'] = intval(db_result('bbs_like', 'uid', array('pid'=>$id, 'uid'=>$this->u['id'])));
 		$args['has_mark'] = intval(db_result('bbs_mark', 'uid', array('pid'=>$id, 'uid'=>$this->u['id'])));
 
 		$bc = array(
-			'bbs' => '/index.php',
-			$args['nodename'] => '/index.php/bbs/node/' . $args['nodename'],
+			'bbs' => '/bbs',
+			$args['nodename'] => '/bbs/node/' . $args['nodename'],
 			$args['title'] => ''
 		);
 
@@ -155,7 +155,14 @@ class Bbs extends MY_Controller
 
 	private function sidebar($uid = 0)
 	{
-		return $this->load->view('bbs/sidebar', null, true);
+		$args = array();
+		if(0 == $uid)
+			$user = $this->u;
+		else
+			$user = $this->user->get_user_info('id', $uid);
+		$args['user'] = $user;
+
+		return $this->load->view('bbs/sidebar', $args, true);
 	}
 }
 

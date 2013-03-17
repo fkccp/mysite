@@ -19,7 +19,7 @@ class MY_Controller extends CI_Controller
 	private function _init_user()
 	{
 		$this->load->model('usermodel', 'user');
-		$this->u = $this->user->get_user_info('id', 1);
+		$this->u = $this->user->get_user_info('id', 2);
 	}
 
 	private $pageinfo = array(

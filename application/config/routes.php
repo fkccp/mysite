@@ -41,6 +41,8 @@
 $route['default_controller'] = "bbs";
 $route['404_override'] = '';
 
+$route['user/(:num)'] = 'user/index/$1';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

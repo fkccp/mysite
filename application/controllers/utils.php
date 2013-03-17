@@ -85,6 +85,18 @@ class Utils extends My_Controller
 			}
 		}
 	}
+
+	public function city()
+	{
+		$data = $this->input->get();
+		if($data)
+		{
+			$ids = array_slice($data['ids'], 0, $data['index']+1);
+			$this->load->library('city');
+			$cities = $this->city->get_list($ids);
+			echo json_encode($cities);
+		}
+	}
 }
 
 /* eof */
