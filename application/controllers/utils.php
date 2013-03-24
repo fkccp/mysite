@@ -14,11 +14,12 @@ class Utils extends My_Controller
 		$cmtid = intval($this->input->post('cmtid'));
 
 		$filters = array(
-			'#<style>(.*?)</style>#i',
-			'#<object>(.*?)</object>#i',
-			'#<frame>(.*?)</frame>#i',
-			'#<iframe>(.*?)</iframe>#i',
-			'#<script>(.*?)</script>#i'
+			'#<style>(.*)</style>#i',
+			'#<object>(.*)</object>#i',
+			'#<frame>(.*)</frame>#i',
+			'#<iframe>(.*)</iframe>#i',
+			'#<blockquote>(.*)</blockquote>#i',
+			'#<script>(.*)</script>#i'
 		);
 		// strip_tags ???
 		$cnt = preg_replace($filters, '', $cnt);
@@ -33,7 +34,9 @@ class Utils extends My_Controller
 
 		if($cmtid)
 		{
-			$scmt_data = db_result('bbs_cmt', 'content,uid', array('id'=>$cmtid));
+			$this->db->join('user u', 'u.id=c.uid');
+			$scmt_data = db_result('bbs_cmt c', 'content,uid,name', array('c.id'=>$cmtid));
+			$scmt_data['content'] = '<p class="name"><a href="#cmt_'.$cmtid.'">'.$scmt_data['name'].' : </a></p>' . preg_replace('#<blockquote>(.*)</blockquote>#i', '', $scmt_data['content']);
 			$cnt = sprintf('<blockquote>%s</blockquote>', $scmt_data['content']) . $cnt;
 		}
 

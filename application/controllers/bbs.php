@@ -48,6 +48,13 @@ class Bbs extends MY_Controller
 		$args = $this->bbs->get_post($id);
 		if(false === $args) $this->err_404();
 
+		// 清除当前帖子的未读
+		$ref = arr_get($_SERVER, 'HTTP_REFERER');
+		if($ref && strpos($ref, 'msg'))
+		{
+			$this->db->set('has_read', 1)->where(array('ruid'=>$this->u['id'], 'pid'=>$id))->update('bbs_notice');
+		}
+
 		$args['sidebar'] = $this->sidebar($args['uid']);
 
 		$args['has_like'] = intval(db_result('bbs_like', 'uid', array('pid'=>$id, 'uid'=>$this->u['id'])));
@@ -115,8 +122,10 @@ class Bbs extends MY_Controller
 	public function add($node='')
 	{
 		$bc = array();
+		$node = urldecode($node);
 		if($node)
-			$bc[$node] = '';
+			$bc[$node] = '/bbs/node/' . $node;
+		$bc['添加新主题'] = '';
 		
 		$this->set_bc($bc);
 

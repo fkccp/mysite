@@ -9,6 +9,7 @@ li {list-style: none;}
 #topbar {width: 100%; padding:7px 0; box-shadow:0px 1px 10px #9b9;height:16px}
 #topbar , #topbar .wrapper {background-color: #bfb;margin: auto}
 .wrapper {width: 960px; margin: auto}
+.red {color: red}
 
 #bc {margin: 20px 0}
 #left {width: 720px;float: left;}
@@ -20,7 +21,7 @@ li {list-style: none;}
 .menu li, .user li {float: left; margin-left: 10px}
 
 /* footer */
-#footer {text-align: center;margin-top: 20px}
+#footer {text-align: center;margin: 20px 0}
 #footer a {margin-left: 10px}
 
 /* bbs */
@@ -29,6 +30,7 @@ li {list-style: none;}
 
 /* cmt */
 div.cmt_content {border: 1px solid #333; padding-bottom: 30px}
+blockquote {border-left: 3px #ddd solid;color:#aaa; margin: 10px; padding-left: 10px}
 
 /* setting */
 

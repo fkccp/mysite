@@ -184,11 +184,12 @@ $(function(){
 		})()
 	}
 
+	/* msg unread */
 	if($('#msg_list').length)
 	{
 		(function(){
 			$('.msg_clk').click(function(){
-				
+				$(this).parent().removeClass('msg_unread')
 			})
 		})()
 	}

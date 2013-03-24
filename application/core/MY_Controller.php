@@ -57,9 +57,9 @@ class MY_Controller extends CI_Controller
 		$strbc .= '<a href="/bbs">首页</a>';
 		foreach ($bc as $k => $v) {
 			if($v)
-				$strbc .= ' > <a href="'.$v.'">'.$k.'</a>';
+				$strbc .= ' » <a href="'.$v.'">'.$k.'</a>';
 			else
-				$strbc .= ' > ' . $k;
+				$strbc .= ' » ' . $k;
 		}
 
 		$strbc .= "</div>";
