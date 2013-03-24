@@ -1,5 +1,4 @@
 <div id="left">
-	<div id="bc"><?=$bc?></div>
 	<div id="add-bbs">
 		结点：<br />
 		<input type="text" id="bbs-node" value="<?=$node?>"><br />

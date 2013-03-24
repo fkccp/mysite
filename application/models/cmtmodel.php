@@ -2,6 +2,7 @@
 
 class Cmtmodel extends CI_Model
 {
+	// 提取某帖评论
 	public function get_list($type = 'bbs', $id)
 	{
 		$args = array();
@@ -20,6 +21,19 @@ class Cmtmodel extends CI_Model
 				->result_array();
 
 		return $this->load->view('cmt/list', $args, true);
+	}
+
+	// 提取某用户评论
+	public function get_user_list($type, $uid)
+	{
+		return $this->db
+			->select('c.id, c.content, c.ctime, c.pid, p.title')
+			->join($type . '_post p', 'c.pid=p.id AND p.is_show = 1')
+			->where(array('c.uid'=>$uid, 'p.is_show'=>1, 'c.is_show'=>1))
+			->order_by('c.ctime', 'desc')
+			->limit(5)
+			->get($type . '_cmt c')
+			->result_array();
 	}
 }
 

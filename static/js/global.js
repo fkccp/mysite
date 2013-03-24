@@ -42,22 +42,46 @@ $(function(){
 	}
 
 	/* cmt-add */
-	if($('#cmt_submit').length)
+	if($('.cmt_submit').length)
 	{
 		(function(){
-			var cnt_obj = $('#cmt_content'), warn = $('.warn')
-			cnt_obj.focus(function(){ warn.html('') })	
-			$('#cmt_submit').click(function(){
-				var cnt = cnt_obj.html()
-				if('' == cnt)
-				{
-					warn.html('请把数据填写完整')
-					return false
-				}
-				warn.html('发布中....')
-				$.post('/utils/bbs_cmt_add', {cnt:cnt}, function(r){
-					location.reload()
+			var init_cmt_box = function(box, cmtid)
+			{
+				var warn = box.find('.warn'),
+					cnt_obj = box.find('.cmt_content').focus(function(){warn.html('')}),
+					cmtid = cmtid || 0
+
+				if(cmtid)
+					cnt_obj.focus()
+
+				box.find('.cmt_submit').click(function(){
+					var cnt = cnt_obj.html()
+					if('' == cnt)
+					{
+						warn.html('请把数据填写完整')
+						return false
+					}
+					warn.html('发布中....')
+					$.post('/utils/bbs_cmt_add', {cnt:cnt, cmtid:cmtid}, function(r){
+							location.reload()
+						})
 				})
+			}
+			init_cmt_box($('#cmt_box'))
+
+			$('.cmt_reply').click(function(){
+				var reply_box = $(this).parent().siblings('.cmt_reply_box'),
+					tpl = $('#cmt_box').clone().attr('id', ''),
+					cmtid = $(this).attr('data-cmtid')
+
+				if(!reply_box.children().length)
+				{
+					$('<a href="javascript:;">取消</a>').click(function(){
+						$(this).parent().parent().html('')
+					}).appendTo(tpl)
+					reply_box.append(tpl)
+					init_cmt_box(reply_box, cmtid)
+				}
 			})
 		})()
 	}
@@ -159,4 +183,14 @@ $(function(){
 			}
 		})()
 	}
+
+	if($('#msg_list').length)
+	{
+		(function(){
+			$('.msg_clk').click(function(){
+				
+			})
+		})()
+	}
+
 })

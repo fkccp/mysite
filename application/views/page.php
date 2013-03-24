@@ -12,6 +12,7 @@
 <body>
 	<?=$header?>
 	<div class="wrapper">
+		<?=$bc?>
 		<?=$body?>
 		<div class="clear"></div>
 		<div id="footer">

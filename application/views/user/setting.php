@@ -1,5 +1,4 @@
 <div id="left">
-	<div id="bc"><?=$bc?></div>
 	<div class="setting">
 		<form action="" method="post">
 		<table border="0">
@@ -18,7 +17,7 @@
 				<td>
 					<input type="text" name="birth" value="<?=$birth?>">
 					&nbsp;&nbsp;<label> <input type="checkbox" name="birth_pub" <?if(0 == $birth_pub):?>checked<?endif?>> 不公开</label>
-					&nbsp;&nbsp;(格式：19900908)
+					&nbsp;&nbsp;(格式：19851231)
 				</td>
 			</tr>
 			<tr>

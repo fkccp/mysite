@@ -80,6 +80,7 @@ function gen_pager($total)
 
 function cmt_seainfo($n)
 {
+	return '';
 	$str = '这位小盆友在';
 	if(1 == $n)
 		$str .= '神农顶上仰望星空，思考着下一顿吃什么';

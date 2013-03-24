@@ -31,6 +31,18 @@ class User extends My_Controller
 		else
 			$args['married'] = '非公开';
 
+		if($args['n_bbs_post'])
+		{
+			$this->load->model('bbsmodel', 'bbs');
+			$args['bbs_posts'] = $this->bbs->get_user_list($uid);
+		}
+
+		if($args['n_bbs_cmt'])
+		{
+			$this->load->model('cmtmodel', 'cmt');
+			$args['bbs_cmts'] = $this->cmt->get_user_list('bbs', $uid);
+		}
+
 		$this->v('user/info', $args);
 	}
 

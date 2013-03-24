@@ -12,7 +12,7 @@
 		<ul class="user">
 			<li><a href="/user/<?=$user['id']?>"><?=$user['name']?></a></li>
 			<li><a href="/user/setting">设置</a></li>
-			<li><a href="/msg">私信(0)</a></li>
+			<li><a href="/msg">提醒(<?=$n_notice?>)</a></li>
 			<li><a href="/logout">退出</a></li>
 		</ul>
 		<div class="clear"></div>

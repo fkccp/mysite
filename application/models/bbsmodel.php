@@ -2,6 +2,7 @@
 
 class Bbsmodel extends CI_Model
 {
+	// 帖子内容
 	public function get_post($id)
 	{
 		$data = db_result('bbs_post', '*', array('id'=>$id));
@@ -18,6 +19,7 @@ class Bbsmodel extends CI_Model
 		return $data;
 	}
 
+	// 根据结点id提取帖子列表
 	public function get_list($nid)
 	{
 		$page = abs(intval($this->input->get('page')));
@@ -34,6 +36,18 @@ class Bbsmodel extends CI_Model
 				->result_array();
 
 		return $list;
+	}
+
+	// 根据用户uid提取帖子列表
+	public function get_user_list($uid)
+	{
+		return $this->db
+			->select('id, title, ctime')
+			->where(array('uid'=>$uid, 'is_show'=>1))
+			->order_by('ctime', 'desc')
+			->limit(5)
+			->get('bbs_post')
+			->result_array();
 	}
 }
 

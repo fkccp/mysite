@@ -1,5 +1,4 @@
 <div id="left">
-	<div id="bc"><?=$bc?></div>
 	<div>
 		<p>基本信息：</p>
 		<img src="aa" alt="">
@@ -35,8 +34,36 @@
 			</tr>
 		</table>
 	</div>
-
+	
+	<hr>
+	
 	<div>
-		<p>bbs动态：</p>
+		<?if($n_bbs_post):?>
+		<h3><?=$name?>最近创建的主题：</h3>
+		<ul>
+			<?foreach($bbs_posts as $post):?>
+			<li>
+				<?=beautify_time($post['ctime'])?>前创建了主题 <a target="_blank" href="/bbs/post/<?=$post['id']?>"><?=$post['title']?></a>
+			</li>
+			<?endforeach?>
+		</ul>
+		<?else:?>
+		<p><?=$name?>还没创建过任何主题。</p>
+		<?endif?>
+
+		<?if($n_bbs_cmt):?>
+		<h3><?=$name?>最近发表的评论：</h3>
+		<ul>
+			<?foreach($bbs_cmts as $cmt):?>
+			<li>
+				<p>在<?=beautify_time($cmt['ctime'])?>前回复主题：<a target="_blank" href="/bbs/post/<?=$cmt['pid']?>#cmt_<?=$cmt['id']?>"><?=$cmt['title']?></a></p>
+				<p><?=$cmt['content']?></p>
+			</li>
+			<?endforeach?>
+		</ul>
+		<?else:?>
+		<p><?=$name?>还没发表过任何评论。</p>
+		<?endif?>
 	</div>
+
 </div>

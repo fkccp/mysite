@@ -147,9 +147,10 @@ class Bbs extends MY_Controller
 		);
 
 		inc('bbs_node', 'n_post', array('id'=>$nid));
+		inc('userinfo', 'n_bbs_post', array('uid'=>$this->u['id']));
 		Sinc('n_bbs_post');
 		$this->db->insert('bbs_post', $data);
-		
+
 		echo $this->db->insert_id();
 	}
 

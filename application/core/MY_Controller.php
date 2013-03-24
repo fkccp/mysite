@@ -8,6 +8,9 @@ class MY_Controller extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->database();
+		
+		$this->load->model('msgmodel', 'msg');
+
 		$this->_init();
 	}
 
@@ -19,7 +22,7 @@ class MY_Controller extends CI_Controller
 	private function _init_user()
 	{
 		$this->load->model('usermodel', 'user');
-		$this->u = $this->user->get_user_info('id', 2);
+		$this->u = $this->user->get_user_info('id', 1);
 	}
 
 	private $pageinfo = array(
@@ -74,6 +77,7 @@ class MY_Controller extends CI_Controller
 	private function set_header()
 	{
 		$args['user'] = $this->u;
+		$args['n_notice'] = $this->msg->get_num(0);
 		$this->pageinfo['header'] = $this->load->view('header', $args, true);
 	}
 

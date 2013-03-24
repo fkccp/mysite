@@ -1,5 +1,4 @@
 <div id="left">
-	<div><?=$bc?></div>
 	<a href="/bbs/add/<?=$nodename?>">添加新主题</a>
 	<ul>
 	<?foreach($list as $item):?>

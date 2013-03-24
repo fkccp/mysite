@@ -1,5 +1,4 @@
 <div id="left">
-	<div id="bc"><?=$bc?></div>
 	<div><?=$title?></div>
 	<div>
 		<a href="/user/<?=$uid?>"><?=$username?></a>

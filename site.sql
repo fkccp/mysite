@@ -22,7 +22,10 @@ create table userinfo(
 	married tinyint unsigned default 1,
 	married_pub tinyint unsigned default 1,
 	job varchar(255) default '',
-	sign varchar(255) default ''
+	sign varchar(255) default '',
+	n_bbs_post int unsigned default 0,
+	n_bbs_cmt int unsigned default 0,
+	n_bbs_mark int unsigned default 0
 );
 
 /* bbs */
@@ -100,6 +103,17 @@ create table bbs_cmt_like
 	cid int unsigned default 0,
 	ctime int unsigned default 0,
 	unique uni(uid, pid)
+);
+
+drop table if exists bbs_notice;
+create table bbs_notice(
+	id int unsigned primary key auto_increment,
+	suid int unsigned default 0,
+	ruid int unsigned default 0,
+	pid int unsigned default 0,
+	cid int unsigned default 0,
+	ctime int unsigned default 0,
+	has_read tinyint unsigned default 0
 );
 
 /* site */
